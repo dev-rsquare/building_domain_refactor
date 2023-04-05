@@ -1,6 +1,7 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
 import java.security.PrivateKey
+import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable

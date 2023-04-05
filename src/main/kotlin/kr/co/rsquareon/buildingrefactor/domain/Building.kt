@@ -2,7 +2,6 @@ package kr.co.rsquareon.buildingrefactor.domain
 
 import kr.co.rsquareon.buildingrefactor.domain.value.Address
 import kr.co.rsquareon.buildingrefactor.domain.value.CompletionDate
-import kr.co.rsquareon.buildingrefactor.domain.value.Construction
 import kr.co.rsquareon.buildingrefactor.domain.value.Elevator
 import kr.co.rsquareon.buildingrefactor.domain.value.Floors
 import kr.co.rsquareon.buildingrefactor.domain.value.Location
@@ -11,11 +10,13 @@ import kr.co.rsquareon.buildingrefactor.domain.value.Parking
 import kr.co.rsquareon.buildingrefactor.domain.value.Remodeled
 import kr.co.rsquareon.buildingrefactor.domain.value.StandardFloor
 import kr.co.rsquareon.buildingrefactor.domain.value.Toilet
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.AreaUnit
+import kr.co.rsquareon.buildingrefactor.domain.value.Bearing
+import kr.co.rsquareon.buildingrefactor.domain.value.BuildingArea
+import kr.co.rsquareon.buildingrefactor.domain.value.ConstructionStatus
+import kr.co.rsquareon.buildingrefactor.domain.value.Facility
+import kr.co.rsquareon.buildingrefactor.domain.value.RestArea
 import kr.co.rsquareon.buildingrefactor.util.IDK
 import kr.co.rsquareon.buildingrefactor.util.RootAggregate
-import javax.persistence.AttributeOverride
-import javax.persistence.Column
 import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -41,22 +42,14 @@ class Building(
     @Embedded
     private val address: Address,
 
-    @Embedded
-    private val floors: Floors,
-
-    // TODO embedded를 빼야 하는지
-    @Embedded
-    private val construction: Construction,
+    @Enumerated(EnumType.STRING)
+    private val constructionStatus: ConstructionStatus,
 
     @Embedded
     private val completionDate: CompletionDate,
 
     @Embedded
     private val remodeled: Remodeled,
-
-    @Embedded
-    @AttributeOverride(name = "value", column = Column(name = "total_ground_area"))
-    private val totalGroundArea: AreaUnit,
 
     @Embedded
     private val parking: Parking,
@@ -73,8 +66,27 @@ class Building(
     @Embedded
     private val elevator: Elevator,
 
+    @Embedded
+    private val restArea: RestArea,
+
+    @Embedded
+    private val area: BuildingArea,
+
+    @Embedded
+    private val facility: Facility,
+
+    private val urbanDevelopmentDistrict: Boolean,
+
+    private val buildingKind: String,
+
+    private val buildingDirection: Bearing,
+
     id: Long = 0L
 ) : RootAggregate<Building>(id) {
+
+
+    @Embedded
+    private val floors: Floors = Floors()
 
     private val code: String = "1a"
 

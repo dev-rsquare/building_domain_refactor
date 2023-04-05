@@ -9,15 +9,15 @@ import javax.persistence.OneToMany
 class Floors(
 
     @OneToMany(mappedBy = "building", cascade = [CascadeType.ALL], orphanRemoval = true)
-    private val floors: MutableList<Floor>
+    private val values: MutableList<Floor> = mutableListOf()
 ) {
 
     fun getGroundFloorsCount(): Int {
-        return this.floors.count { it.isGround() }
+        return this.values.count { it.isGround() }
     }
 
     fun getUnderGroundFloorsCount(): Int {
-        return this.floors.count { it.isUnderGround() }
+        return this.values.count { it.isUnderGround() }
     }
 
 

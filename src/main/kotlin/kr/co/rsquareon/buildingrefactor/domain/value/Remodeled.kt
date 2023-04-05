@@ -5,7 +5,7 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class Remodeled(
-    private val year: Year,
+    private val remodeledYear: Year,
 
     private val remodeled: Boolean
 ) {

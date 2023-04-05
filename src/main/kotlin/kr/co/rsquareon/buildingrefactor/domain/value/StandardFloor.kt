@@ -9,8 +9,9 @@ import javax.persistence.Embedded
 
 @Embeddable
 class StandardFloor(
-    // TODO nullable 여부 확인
-    private val standardFloor: Int,
+    // TODO nullable 여부 확인 - 확인 완료
+    // 기준층이 여러개일 수 있는 가능성 고려(현업 사용성에 따라 다름)
+    private val standardFloor: Int?,
 
     @Embedded
     @AttributeOverrides(

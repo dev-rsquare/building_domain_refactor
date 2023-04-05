@@ -9,6 +9,6 @@ import javax.persistence.OneToMany
 class Spaces(
 
     @OneToMany(mappedBy = "floor", cascade = [CascadeType.ALL], orphanRemoval = true)
-    private val spaces: MutableList<Space>
+    private val spaces: MutableList<Space> = mutableListOf()
 ) {
 }
