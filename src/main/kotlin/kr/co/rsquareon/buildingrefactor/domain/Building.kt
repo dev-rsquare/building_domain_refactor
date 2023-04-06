@@ -71,7 +71,7 @@ class Building(
 
     private val urbanDevelopmentDistrict: Boolean,
 
-    private val buildingKind: String?,
+    private val mainPurpose: String?,
 
     private val buildingDirection: Bearing,
 

@@ -1,6 +1,7 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Area
+import org.hibernate.annotations.Comment
 import javax.persistence.AttributeOverride
 import javax.persistence.AttributeOverrides
 import javax.persistence.Column
@@ -31,6 +32,7 @@ class StandardFloor(
         AttributeOverride(name = "numberOfMonth.value", column = Column(name = "fit_out_number_of_month")),
         AttributeOverride(name = "maintenanceIncluded", column = Column(name = "fit_out_maintenance_included")),
     )
+    @Comment("핏아웃(공사중에는 임대료면제)")
     private val fitOut: Benefit,
 
     @AttributeOverrides(
@@ -39,14 +41,14 @@ class StandardFloor(
     )
     private val rentFree: Benefit,
 
-    // 지원금액 / 전용면적
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "tenant_improvement"))
+    @Comment("TI(지원금액/전용면적)")
     private val tenantImprovement: MoneyPerSpace,
 
-    // (보증금*보증금 운용이율 /12개월 + 임대료 + 관리비)/(연면적*전용률)
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "noc"))
+    @Comment("순점유비용(보증금*보증금 운용이율 /12개월 + 임대료 + 관리비)/(연면적*전용률)")
     private val noc: MoneyPerSpace
 ) {
 
