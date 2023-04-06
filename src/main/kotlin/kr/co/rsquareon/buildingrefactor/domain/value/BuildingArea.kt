@@ -11,15 +11,15 @@ class BuildingArea(
 
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "land_area"))
-    private val land: AreaUnit,
+    private val land: AreaUnit?,
 
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "building_area"))
-    private val building: AreaUnit,
+    private val building: AreaUnit?,
 
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "total_ground_area"))
-    private val totalGroundArea: AreaUnit,
+    private val totalGroundArea: AreaUnit?,
 
     @Embedded
     private val floorAreaRatio: Percentage,

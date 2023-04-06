@@ -1,6 +1,12 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
+import kr.co.rsquareon.buildingrefactor.domain.enums.DesignationParkingType
+import kr.co.rsquareon.buildingrefactor.domain.enums.ParkingLotType
+import javax.persistence.AttributeOverride
+import javax.persistence.AttributeOverrides
+import javax.persistence.Column
 import javax.persistence.Embeddable
+import javax.persistence.Embedded
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
 
@@ -13,12 +19,27 @@ class Parking(
     @Enumerated(EnumType.STRING)
     private val parkingLotType: ParkingLotType?,
 
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "count", column = Column(name = "free_parking_count")),
+        AttributeOverride(name = "detail", column = Column(name = "free_parking_detail")),
+        AttributeOverride(name = "parkingAvailable", column = Column(name = "free_parking_parking_available")),
+    )
+    private val free: ParkingDetail,
+
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "count", column = Column(name = "paid_parking_count")),
+        AttributeOverride(name = "detail", column = Column(name = "paid_parking_detail")),
+        AttributeOverride(name = "parkingAvailable", column = Column(name = "paid_parking_parking_available")),
+    )
+    private val paid: ParkingDetail
     // TODO 아래 내용 확인 필요
     /**
      * 무료 주차 기준 코드
      * 무료 주차 상세
      * 무료 주차 개수
-     * 유료 주차 기준 코드[01:불가능, 02:협의, 03:가능, 04:확인불가]
+     * 유료 주차 기준 코드 [01:불가능, 02:협의, 03:가능, 04:확인불가]
      * 유료 주차 개수
      * 유료 주차 상세
      */

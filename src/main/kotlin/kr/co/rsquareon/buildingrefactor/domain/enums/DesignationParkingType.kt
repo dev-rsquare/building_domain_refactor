@@ -1,4 +1,4 @@
-package kr.co.rsquareon.buildingrefactor.domain.value
+package kr.co.rsquareon.buildingrefactor.domain.enums
 
 enum class DesignationParkingType(
     private val description: String

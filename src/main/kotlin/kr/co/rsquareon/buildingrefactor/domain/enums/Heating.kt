@@ -1,4 +1,4 @@
-package kr.co.rsquareon.buildingrefactor.domain.value
+package kr.co.rsquareon.buildingrefactor.domain.enums
 
 enum class Heating(
     private val description: String

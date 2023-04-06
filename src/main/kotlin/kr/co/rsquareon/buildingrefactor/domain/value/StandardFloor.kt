@@ -9,7 +9,6 @@ import javax.persistence.Embedded
 
 @Embeddable
 class StandardFloor(
-    // TODO nullable 여부 확인 - 확인 완료
     // 기준층이 여러개일 수 있는 가능성 고려(현업 사용성에 따라 다름)
     private val standardFloor: Int?,
 
@@ -20,17 +19,13 @@ class StandardFloor(
     )
     private val area: Area,
 
-    // TODO 비용으로 묶어도 될까
-    @AttributeOverride(name = "value", column = Column(name = "deposit"))
-    private val deposit: Money,
-
-    // TODO 비용으로 묶어도 될까
-    @AttributeOverride(name = "value", column = Column(name = "rent"))
-    private val rent: Money,
-
-    // TODO 비용으로 묶어도 될까
-    @AttributeOverride(name = "value", column = Column(name = "maintenance"))
-    private val maintenance: Money,
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "deposit.value", column = Column(name = "deposit")),
+        AttributeOverride(name = "rent.value", column = Column(name = "rent")),
+        AttributeOverride(name = "maintenance.value", column = Column(name = "maintenance"))
+    )
+    private val expense: Expense,
 
     @AttributeOverrides(
         AttributeOverride(name = "numberOfMonth.value", column = Column(name = "fit_out_number_of_month")),
@@ -44,11 +39,15 @@ class StandardFloor(
     )
     private val rentFree: Benefit,
 
-//    // TODO 소수 필요 여부 확인
-//    private val tenantImprovement: Money,
-//
-//    // TODO 소수 필요 여부 확인
-//    private val noc: Money
+    // 지원금액 / 전용면적
+    @Embedded
+    @AttributeOverride(name = "value", column = Column(name = "tenant_improvement"))
+    private val tenantImprovement: MoneyPerSpace,
+
+    // (보증금*보증금 운용이율 /12개월 + 임대료 + 관리비)/(연면적*전용률)
+    @Embedded
+    @AttributeOverride(name = "value", column = Column(name = "noc"))
+    private val noc: MoneyPerSpace
 ) {
 
 }
