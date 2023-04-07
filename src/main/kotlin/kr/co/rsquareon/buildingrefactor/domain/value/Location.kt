@@ -1,18 +1,17 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
-import java.security.PrivateKey
-import javax.persistence.Column
+import org.hibernate.annotations.Comment
 import javax.persistence.Embeddable
 
 @Embeddable
 class Location(
-    // 위도
+    @Comment("위도")
     private val latitude: Double,
 
-    // 경도
+    @Comment("경도")
     private val longitude: Double,
 
-    // 좌표?..
+    @Comment("좌표")
     private val geometry: String
 ) {
 

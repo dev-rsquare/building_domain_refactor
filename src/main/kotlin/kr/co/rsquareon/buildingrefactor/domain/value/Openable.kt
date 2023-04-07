@@ -1,6 +1,6 @@
-package kr.co.rsquareon.buildingrefactor.domain.enums
+package kr.co.rsquareon.buildingrefactor.domain.value
 
-enum class ParkingAvailable(
+enum class Openable(
     private val description: String
 ) {
 

@@ -4,7 +4,7 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class AreaUnit(
-    private val value: Double
+    private val m2: Double
 ) {
 
 }

@@ -1,4 +1,4 @@
-package kr.co.rsquareon.buildingrefactor.domain.floor.space.enums
+package kr.co.rsquareon.buildingrefactor.domain.floor.space.value
 
 enum class Facility(
     private val description: String

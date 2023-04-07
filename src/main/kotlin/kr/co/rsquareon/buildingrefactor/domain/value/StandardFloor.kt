@@ -1,22 +1,24 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Area
+import kr.co.rsquareon.buildingrefactor.util.BaseEntity
 import org.hibernate.annotations.Comment
 import javax.persistence.AttributeOverride
 import javax.persistence.AttributeOverrides
 import javax.persistence.Column
 import javax.persistence.Embeddable
 import javax.persistence.Embedded
+import javax.persistence.Entity
 
-@Embeddable
+@Entity
 class StandardFloor(
     // 기준층이 여러개일 수 있는 가능성 고려(현업 사용성에 따라 다름)
     private val standardFloor: Int?,
 
     @Embedded
     @AttributeOverrides(
-        AttributeOverride(name = "leasable.value", column = Column(name = "standard_floor_leasable_area")),
-        AttributeOverride(name = "netLeasable.value", column = Column(name = "standard_floor_net_leasable_area"))
+        AttributeOverride(name = "leasable.m2", column = Column(name = "standard_floor_leasable_area")),
+        AttributeOverride(name = "netLeasable.m2", column = Column(name = "standard_floor_net_leasable_area"))
     )
     private val area: Area,
 
@@ -49,7 +51,12 @@ class StandardFloor(
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "noc"))
     @Comment("순점유비용(보증금*보증금 운용이율 /12개월 + 임대료 + 관리비)/(연면적*전용률)")
-    private val noc: MoneyPerSpace
-) {
+    private val noc: MoneyPerSpace,
+
+    id: Long = 0L
+) : BaseEntity(id) {
+
+    @Embedded
+    private val sample: Sample = Sample("asdf")
 
 }

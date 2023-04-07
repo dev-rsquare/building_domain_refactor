@@ -1,13 +1,16 @@
 package kr.co.rsquareon.buildingrefactor.domain.floor.space.value
 
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.enums.Facility
+import org.hibernate.annotations.Comment
 import javax.persistence.Embeddable
 
 @Embeddable
 class ConvenienceFacility(
+
+    @Comment("편의시설 존재 여부")
     private val exist: Boolean?,
 
     // TODO | ENUM 리스트로 받는게 맞는가
-    private val facilityList: MutableList<Facility> = mutableListOf()
+//    @Comment("편의시설 종류 목록")
+//    private val facilityList: MutableList<Facility> = mutableListOf()
 ) {
 }
