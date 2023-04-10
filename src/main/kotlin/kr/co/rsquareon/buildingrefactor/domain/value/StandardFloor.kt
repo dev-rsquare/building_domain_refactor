@@ -53,6 +53,8 @@ class StandardFloor(
     @Comment("순점유비용(보증금*보증금 운용이율 /12개월 + 임대료 + 관리비)/(연면적*전용률)")
     private val noc: MoneyPerSpace,
 
+    private val height: Double?,
+
     id: Long = 0L
 ) : BaseEntity(id) {
 

@@ -15,6 +15,6 @@ class ParkingDetail(
 
     @Enumerated(EnumType.STRING)
     @Comment("주차 가능 상태")
-    private val parkingAvailable: ParkingAvailable
+    private val parkingAvailable: ParkingAvailable?
 ) {
 }
