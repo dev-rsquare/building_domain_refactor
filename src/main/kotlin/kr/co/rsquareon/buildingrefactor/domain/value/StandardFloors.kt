@@ -1,18 +1,13 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
-import javax.persistence.AttributeOverride
-import javax.persistence.AttributeOverrides
-import javax.persistence.CollectionTable
-import javax.persistence.Column
-import javax.persistence.ElementCollection
+import javax.persistence.CascadeType
 import javax.persistence.Embeddable
-import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
 
 @Embeddable
 class StandardFloors(
 
-    @OneToMany
+    @OneToMany(mappedBy = "building", cascade = [CascadeType.ALL], orphanRemoval = true)
     private val standardFloors: MutableList<StandardFloor>
 ) {
 

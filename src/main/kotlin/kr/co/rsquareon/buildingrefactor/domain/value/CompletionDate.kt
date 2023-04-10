@@ -9,11 +9,11 @@ import javax.persistence.Embeddable
 class CompletionDate(
 
     @Column(name = "completion_date")
-    @Comment("완공 연도")
+//    //MSH @Comment("완공 연도")
     private val actual: LocalDate,
 
     @Column(name = "expected_completion_date")
-    @Comment("예상완공 연도")
+//    //MSH @Comment("예상완공 연도")
     private val expect: LocalDate
 ) {
 }

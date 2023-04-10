@@ -13,26 +13,26 @@ import javax.persistence.Enumerated
 class Parking(
 
     @Enumerated(EnumType.STRING)
-    @Comment("지정주차 여부")
+//    //MSH @Comment("지정주차 여부")
     private val designationType: DesignationParkingType?,
 
     @Enumerated(EnumType.STRING)
-    @Comment("주차장 유형")
+    //MSH @Comment("주차장 유형")
     private val parkingLotType: ParkingLotType?,
 
     @Embedded
     @AttributeOverrides(
-        AttributeOverride(name = "count", column = Column(name = "free_parking_count", columnDefinition = "INTEGER COMMENT '무료 주차 대수'")),
-        AttributeOverride(name = "detail", column = Column(name = "free_parking_detail", columnDefinition = "VARCHAR(255) COMMENT '무료 주차 추가 설명'")),
-        AttributeOverride(name = "parkingAvailable", column = Column(name = "free_parking_parking_available", columnDefinition = "VARCHAR(255) COMMENT '무료 주차 가능 여부'")),
+        AttributeOverride(name = "count", column = Column(name = "free_parking_count"/*, columnDefinition = "INTEGER COMMENT '무료 주차 대수'"*/)),
+        AttributeOverride(name = "detail", column = Column(name = "free_parking_detail"/*, columnDefinition = "VARCHAR(255) COMMENT '무료 주차 추가 설명'"*/)),
+        AttributeOverride(name = "parkingAvailable", column = Column(name = "free_parking_parking_available"/*, columnDefinition = "VARCHAR(255) COMMENT '무료 주차 가능 여부'"*/)),
     )
     private val free: ParkingDetail,
 
     @Embedded
     @AttributeOverrides(
-        AttributeOverride(name = "count", column = Column(name = "paid_parking_count", columnDefinition = "INTEGER COMMENT '유료 주차 대수'")),
-        AttributeOverride(name = "detail", column = Column(name = "paid_parking_detail", columnDefinition = "VARCHAR(255) COMMENT '유료 주차 대수'")),
-        AttributeOverride(name = "parkingAvailable", column = Column(name = "paid_parking_parking_available", columnDefinition = "VARCHAR(255) COMMENT '유료 주차 대수'")),
+        AttributeOverride(name = "count", column = Column(name = "paid_parking_count"/*, columnDefinition = "INTEGER COMMENT '유료 주차 대수'"*/)),
+        AttributeOverride(name = "detail", column = Column(name = "paid_parking_detail"/*, columnDefinition = "VARCHAR(255) COMMENT '유료 주차 대수'"*/)),
+        AttributeOverride(name = "parkingAvailable", column = Column(name = "paid_parking_parking_available"/*, columnDefinition = "VARCHAR(255) COMMENT '유료 주차 대수'"*/)),
     )
     private val paid: ParkingDetail
     // TODO 아래 내용 확인 필요

@@ -7,10 +7,10 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class Dock(
-    @Comment("도크 개수")
+    //MSH @Comment("도크 개수")
     private val count: Int?,
 
-    @Comment("레벨러 개수")
+    //MSH @Comment("레벨러 개수")
     private val levelerCount: Int?
 ) {
 

@@ -26,20 +26,20 @@ import javax.persistence.Enumerated
 @DiscriminatorValue("WAREHOUSE")
 class Warehouse(
 
-    @Comment("램프")
+    //MSH @Comment("램프")
     private val ramp: Boolean?,
 
-    @Comment("진입도록 폭")
+    //MSH @Comment("진입도록 폭")
     private val accessRoadWidth: Double?,
 
-    @Comment("동시 진출입 여부")
+    //MSH @Comment("동시 진출입 여부")
     private val entryAndExitAtSameTime: Boolean?,
 
     @Enumerated(EnumType.STRING)
-    @Comment("하역공간")
+    //MSH @Comment("하역공간")
     private val loadSpace: LoadSpace?,
 
-    @Comment("차량접안")
+    //MSH @Comment("차량접안")
     private val berth: Berth?,
 
     @Embedded
@@ -49,7 +49,7 @@ class Warehouse(
     )
     private val dock: Dock?,
 
-    @Comment("수직 반송기")
+    //MSH @Comment("수직 반송기")
     private val verticalConveyorCount: Int?,
 
     // TODO exist가 true일 때 detail이 필수가 아니어도 되는지 정책적 재확인 필요
@@ -61,7 +61,7 @@ class Warehouse(
     private val rack: Rack,
 
     @Enumerated(EnumType.STRING)
-    @Comment("물류창고 유형")
+    //MSH @Comment("물류창고 유형")
     private val category: WarehouseCategory,
 
     // TODO | 기타시설비 | RTB etc_fac
@@ -76,7 +76,7 @@ class Warehouse(
     // TODO | 임베디드 vs 이넘
     // 임대 or 수탁(입출고관리) 물류 대서비스해
     @Enumerated(EnumType.STRING)
-    @Comment("물류 대행사 유형")
+    //MSH @Comment("물류 대행사 유형")
     private val agency: WarehouseAgencyType?,
 
     // TODO exist가 true일 때 detail이 필수가 아니어도 되는지 정책적 재확인 필요
@@ -92,16 +92,16 @@ class Warehouse(
 
     // TODO | 보관가능품목 (avail_item_type_cd_list) | enum list는 맞는가
 
-    @Comment("캐노피")
+    //MSH @Comment("캐노피")
     private val canopy: Boolean?,
 
-    @Comment("직원 수")
+    //MSH @Comment("직원 수")
     private val numberOfWorker: Int?,
 
     @Enumerated(EnumType.STRING)
     private val framework: Framework?,
 
-    @Comment("컨테이너 진입 가능 여부")
+    //MSH @Comment("컨테이너 진입 가능 여부")
     private val containerEntry: Boolean?,
 
     @Embedded
@@ -114,16 +114,16 @@ class Warehouse(
 
 // TODO | entry_type_cd_list
 
-    @Comment("전대 가능 여부")
+    //MSH @Comment("전대 가능 여부")
     private val sublease: Boolean?,
 
-    @Comment("상하행 교행")
+    //MSH @Comment("상하행 교행")
     private val crossRoad: Boolean?,
 
-    @Comment("스프링쿨러")
+    //MSH @Comment("스프링쿨러")
     private val springCooler: Boolean?,
 
-    @Comment("방화셔터")
+    //MSH @Comment("방화셔터")
     private val fireproofShutter: Boolean?,
 
     id: Long = 0L

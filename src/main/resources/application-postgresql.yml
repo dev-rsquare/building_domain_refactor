@@ -1,0 +1,12 @@
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/refactor?schema=ssl=false&charset=utf8
+    username: app_valley
+    password: mAZRLQzwx4

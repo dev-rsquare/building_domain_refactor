@@ -16,10 +16,10 @@ import javax.persistence.ManyToOne
 @Entity
 @DiscriminatorColumn(name = "USAGE")
 class Space(
-    @Comment("공간 명")
+    //MSH @Comment("공간 명")
     private val name: String,
 
-    @Comment("공간 별칭")
+    //MSH @Comment("공간 별칭")
     private val alias: String?,
 
     @ManyToOne

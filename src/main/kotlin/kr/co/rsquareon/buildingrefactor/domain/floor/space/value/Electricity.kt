@@ -5,10 +5,10 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class Electricity(
-    @Comment("주 전력량")
+    //MSH @Comment("주 전력량")
     private val main: Double?,
 
-    @Comment("예비 전력량")
+    //MSH @Comment("예비 전력량")
     private val backup: Double?
 ) {
 }

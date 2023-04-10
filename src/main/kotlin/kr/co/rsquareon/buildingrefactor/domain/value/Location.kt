@@ -5,6 +5,7 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class Location(
+
     @Comment("위도")
     private val latitude: Double,
 

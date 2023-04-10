@@ -5,10 +5,10 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class Rack(
-    @Comment("랙 여부")
+    //MSH @Comment("랙 여부")
     private val exist: Boolean?,
 
-    @Comment("랙 상세")
+    //MSH @Comment("랙 상세")
     private val detail: String?
 ) {
 }
