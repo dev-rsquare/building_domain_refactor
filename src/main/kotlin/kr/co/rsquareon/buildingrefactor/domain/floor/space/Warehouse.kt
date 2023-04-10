@@ -71,7 +71,7 @@ class Warehouse(
     private val electricity: Electricity,
 
     // TODO | 임베디드 vs 이넘
-    // 임대 or 수탁(입출고관리) 물류 대서비스해
+    // 임대 or 수탁(입출고관리) 물류대행서비스
     @Enumerated(EnumType.STRING)
     @Comment("물류 대행사 유형")
     private val agency: WarehouseAgencyType?,
