@@ -52,7 +52,6 @@ class Warehouse(
     @Comment("수직 반송기")
     private val verticalConveyorCount: Int?,
 
-    // TODO exist가 true일 때 detail이 필수가 아니어도 되는지 정책적 재확인 필요
     @Embedded
     @AttributeOverrides(
         AttributeOverride(name = "exist", column = Column(name = "rack_exist")),
@@ -63,8 +62,6 @@ class Warehouse(
     @Enumerated(EnumType.STRING)
     @Comment("물류창고 유형")
     private val category: WarehouseCategory,
-
-    // TODO | 기타시설비 | RTB etc_fac
 
     @Embedded
     @AttributeOverrides(
@@ -79,7 +76,6 @@ class Warehouse(
     @Comment("물류 대행사 유형")
     private val agency: WarehouseAgencyType?,
 
-    // TODO exist가 true일 때 detail이 필수가 아니어도 되는지 정책적 재확인 필요
     @Embedded
     @AttributeOverrides(
         AttributeOverride(name = "exist", column = Column(name = "convenience_facility_exist")),
