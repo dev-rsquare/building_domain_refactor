@@ -1,22 +1,22 @@
 package kr.co.rsquareon.buildingrefactor.domain.floor.space
 
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Berth
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Framework
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.LoadSpace
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseAgencyType
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseCategory
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.ConvenienceFacility
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Dock
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Electricity
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Framework
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.FreightElevator
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.LoadSpace
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Rack
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Ramp
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseAgencyType
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseCategory
 import kr.co.rsquareon.buildingrefactor.util.BaseEntity
 import org.hibernate.annotations.Comment
 import javax.persistence.AttributeOverride
 import javax.persistence.AttributeOverrides
 import javax.persistence.Column
 import javax.persistence.DiscriminatorValue
-import javax.persistence.Embeddable
 import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -26,8 +26,12 @@ import javax.persistence.Enumerated
 @DiscriminatorValue("WAREHOUSE")
 class Warehouse(
 
-    @Comment("램프")
-    private val ramp: Boolean?,
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "exist", column = Column(name = "ramp_exist")),
+        AttributeOverride(name = "area", column = Column(name = "ramp_area")),
+    )
+    private val ramp: Ramp?,
 
     @Comment("진입도록 폭")
     private val accessRoadWidth: Double?,
