@@ -7,6 +7,7 @@ import javax.persistence.Enumerated
 
 @Embeddable
 class ParkingDetail(
+
     @Comment("주차 대수")
     private val count: Int?,
 

@@ -11,4 +11,10 @@ class Spaces(
     @OneToMany(mappedBy = "floor", cascade = [CascadeType.ALL], orphanRemoval = true)
     private val spaces: MutableList<Space> = mutableListOf()
 ) {
+
+    fun getTotalAreaOfFloor(): Double {
+        return this.spaces
+            .map { it.getLeasableArea() }
+            .sum()
+    }
 }

@@ -1,6 +1,8 @@
 package kr.co.rsquareon.buildingrefactor.domain.floor.space.value
 
 import org.hibernate.annotations.Comment
+import javax.persistence.Access
+import javax.persistence.AccessType
 import javax.persistence.Embeddable
 
 @Embeddable
@@ -13,4 +15,7 @@ class Area(
     private val netLeasable: AreaUnit
 ) {
 
+    fun lesableAreaWithM2(): Double {
+        return this.leasable.withM2()
+    }
 }

@@ -10,16 +10,17 @@ import javax.persistence.Column
 import javax.persistence.DiscriminatorColumn
 import javax.persistence.Embedded
 import javax.persistence.Entity
+import javax.persistence.Inheritance
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
 @DiscriminatorColumn(name = "USAGE")
 class Space(
-    //MSH @Comment("공간 명")
+    @Comment("공간 명")
     private val name: String,
 
-    //MSH @Comment("공간 별칭")
+    @Comment("공간 별칭")
     private val alias: String?,
 
     @ManyToOne
@@ -35,4 +36,8 @@ class Space(
 
     id: Long = 0L
 ) : BaseEntity(id) {
+
+    fun getLeasableArea(): Double {
+        return this.area.lesableAreaWithM2()
+    }
 }

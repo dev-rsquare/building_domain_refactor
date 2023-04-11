@@ -1,6 +1,7 @@
 package kr.co.rsquareon.buildingrefactor.domain.value
 
 import kr.co.rsquareon.buildingrefactor.domain.Building
+import kr.co.rsquareon.buildingrefactor.domain.floor.Floor
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Area
 import kr.co.rsquareon.buildingrefactor.util.BaseEntity
 import kr.co.rsquareon.buildingrefactor.util.CommentOverride
@@ -9,15 +10,21 @@ import org.hibernate.annotations.Comment
 import javax.persistence.AttributeOverride
 import javax.persistence.AttributeOverrides
 import javax.persistence.Column
+import javax.persistence.DiscriminatorValue
 import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
+import javax.persistence.OneToOne
 
 @Entity
+@DiscriminatorValue(value = "STANDARD_FLOOR")
 class StandardFloor(
 
-    private val standardFloor: Int?,
+    @OneToOne
+    @JoinColumn(name = "floor_id")
+    private val floor: Floor,
 
     @Embedded
     @AttributeOverrides(

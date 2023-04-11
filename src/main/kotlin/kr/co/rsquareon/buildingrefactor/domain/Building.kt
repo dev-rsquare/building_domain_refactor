@@ -8,14 +8,12 @@ import kr.co.rsquareon.buildingrefactor.domain.value.Location
 import kr.co.rsquareon.buildingrefactor.domain.value.Openable
 import kr.co.rsquareon.buildingrefactor.domain.value.Parking
 import kr.co.rsquareon.buildingrefactor.domain.value.Remodeled
-import kr.co.rsquareon.buildingrefactor.domain.value.StandardFloor
 import kr.co.rsquareon.buildingrefactor.domain.value.Toilet
 import kr.co.rsquareon.buildingrefactor.domain.value.Bearing
 import kr.co.rsquareon.buildingrefactor.domain.value.BuildingArea
 import kr.co.rsquareon.buildingrefactor.domain.value.ConstructionStatus
 import kr.co.rsquareon.buildingrefactor.domain.value.Facility
 import kr.co.rsquareon.buildingrefactor.domain.value.RestArea
-import kr.co.rsquareon.buildingrefactor.domain.value.StandardFloors
 import kr.co.rsquareon.buildingrefactor.util.RootAggregate
 import org.hibernate.annotations.Comment
 import javax.persistence.Column
@@ -23,9 +21,6 @@ import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
-import javax.persistence.CollectionTable
-import javax.persistence.ElementCollection
-import javax.persistence.JoinColumn
 
 @Entity
 class Building(
@@ -37,8 +32,8 @@ class Building(
     @Comment("동/관 정보 - e.g. A동")
     private val wing: String?,
 
-    @Embedded
-    private val standardFloors: StandardFloors,
+//    @Embedded
+//    private val standardFloors: StandardFloors,
 //    private val standardFloor: StandardFloor,
 //    @ElementCollection
 //    @CollectionTable(
