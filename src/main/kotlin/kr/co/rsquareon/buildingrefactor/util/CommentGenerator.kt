@@ -13,9 +13,20 @@ class CommentGenerator(
             .entities
 
         for (entity in entities) {
-            val fields = entity.javaClass.fields
-            for (field in fields) {
+            val clazz = Class.forName(entity.name)
+            println(clazz.name)
 
+
+            val fields = entity.javaClass.fields
+            val attributes = entity.attributes
+            for (attribute in attributes) {
+                println(attribute.name)
+            }
+
+            println("${entity.name} - ${fields.size}")
+            for (field in fields) {
+                println("${field.name}")
+                println("${field.getAnnotationsByType(CommentOverrides::class.java)} - ${field.getAnnotationsByType(CommentOverride::class.java)}")
             }
         }
     }

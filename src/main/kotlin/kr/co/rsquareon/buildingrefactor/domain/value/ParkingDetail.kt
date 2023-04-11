@@ -7,14 +7,14 @@ import javax.persistence.Enumerated
 
 @Embeddable
 class ParkingDetail(
-//    //MSH @Comment("주차 대수")
+    @Comment("주차 대수")
     private val count: Int?,
 
-//    //MSH @Comment("주차 상세")
+    @Comment("주차 상세")
     private val detail: String?,
 
     @Enumerated(EnumType.STRING)
-//    //MSH @Comment("주차 가능 상태")
-    private val parkingAvailable: ParkingAvailable
+    @Comment("주차 가능 상태")
+    private val parkingAvailable: ParkingAvailable?
 ) {
 }

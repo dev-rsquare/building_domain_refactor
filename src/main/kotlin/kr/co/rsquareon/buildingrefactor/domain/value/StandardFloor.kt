@@ -43,7 +43,7 @@ class StandardFloor(
         AttributeOverride(name = "numberOfMonth.value", column = Column(name = "fit_out_number_of_month")),
         AttributeOverride(name = "maintenanceIncluded", column = Column(name = "fit_out_maintenance_included")),
     )
-//    @Comment("핏아웃(공사중에는 임대료면제)")
+    @Comment("핏아웃(공사중에는 임대료면제)")
     private val fitOut: Benefit,
 
     @Embedded
@@ -62,6 +62,8 @@ class StandardFloor(
     @AttributeOverride(name = "value", column = Column(name = "noc"))
     @Comment("순점유비용(보증금*보증금 운용이율 /12개월 + 임대료 + 관리비)/(연면적*전용률)")
     private val noc: MoneyPerSpace,
+
+    private val height: Double?,
 
     @ManyToOne
     @JoinColumn(name = "building_id")

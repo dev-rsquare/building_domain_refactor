@@ -1,22 +1,22 @@
 package kr.co.rsquareon.buildingrefactor.domain.floor.space
 
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Berth
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Framework
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.LoadSpace
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseAgencyType
-import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseCategory
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.ConvenienceFacility
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Dock
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Electricity
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Framework
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.FreightElevator
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.LoadSpace
 import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Rack
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.Ramp
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseAgencyType
+import kr.co.rsquareon.buildingrefactor.domain.floor.space.value.WarehouseCategory
 import kr.co.rsquareon.buildingrefactor.util.BaseEntity
 import org.hibernate.annotations.Comment
 import javax.persistence.AttributeOverride
 import javax.persistence.AttributeOverrides
 import javax.persistence.Column
 import javax.persistence.DiscriminatorValue
-import javax.persistence.Embeddable
 import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -26,20 +26,24 @@ import javax.persistence.Enumerated
 @DiscriminatorValue("WAREHOUSE")
 class Warehouse(
 
-    //MSH @Comment("램프")
-    private val ramp: Boolean?,
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "exist", column = Column(name = "ramp_exist")),
+        AttributeOverride(name = "area", column = Column(name = "ramp_area")),
+    )
+    private val ramp: Ramp?,
 
-    //MSH @Comment("진입도록 폭")
+    @Comment("진입도록 폭")
     private val accessRoadWidth: Double?,
 
-    //MSH @Comment("동시 진출입 여부")
+    @Comment("동시 진출입 여부")
     private val entryAndExitAtSameTime: Boolean?,
 
     @Enumerated(EnumType.STRING)
-    //MSH @Comment("하역공간")
+    @Comment("하역공간")
     private val loadSpace: LoadSpace?,
 
-    //MSH @Comment("차량접안")
+    @Comment("차량접안")
     private val berth: Berth?,
 
     @Embedded
@@ -49,10 +53,9 @@ class Warehouse(
     )
     private val dock: Dock?,
 
-    //MSH @Comment("수직 반송기")
+    @Comment("수직 반송기")
     private val verticalConveyorCount: Int?,
 
-    // TODO exist가 true일 때 detail이 필수가 아니어도 되는지 정책적 재확인 필요
     @Embedded
     @AttributeOverrides(
         AttributeOverride(name = "exist", column = Column(name = "rack_exist")),
@@ -61,10 +64,8 @@ class Warehouse(
     private val rack: Rack,
 
     @Enumerated(EnumType.STRING)
-    //MSH @Comment("물류창고 유형")
+    @Comment("물류창고 유형")
     private val category: WarehouseCategory,
-
-    // TODO | 기타시설비 | RTB etc_fac
 
     @Embedded
     @AttributeOverrides(
@@ -74,12 +75,11 @@ class Warehouse(
     private val electricity: Electricity,
 
     // TODO | 임베디드 vs 이넘
-    // 임대 or 수탁(입출고관리) 물류 대서비스해
+    // 임대 or 수탁(입출고관리) 물류대행서비스
     @Enumerated(EnumType.STRING)
-    //MSH @Comment("물류 대행사 유형")
+    @Comment("물류 대행사 유형")
     private val agency: WarehouseAgencyType?,
 
-    // TODO exist가 true일 때 detail이 필수가 아니어도 되는지 정책적 재확인 필요
     @Embedded
     @AttributeOverrides(
         AttributeOverride(name = "exist", column = Column(name = "convenience_facility_exist")),
@@ -92,16 +92,16 @@ class Warehouse(
 
     // TODO | 보관가능품목 (avail_item_type_cd_list) | enum list는 맞는가
 
-    //MSH @Comment("캐노피")
+    @Comment("캐노피")
     private val canopy: Boolean?,
 
-    //MSH @Comment("직원 수")
+    @Comment("직원 수")
     private val numberOfWorker: Int?,
 
     @Enumerated(EnumType.STRING)
     private val framework: Framework?,
 
-    //MSH @Comment("컨테이너 진입 가능 여부")
+    @Comment("컨테이너 진입 가능 여부")
     private val containerEntry: Boolean?,
 
     @Embedded
@@ -114,16 +114,16 @@ class Warehouse(
 
 // TODO | entry_type_cd_list
 
-    //MSH @Comment("전대 가능 여부")
+    @Comment("전대 가능 여부")
     private val sublease: Boolean?,
 
-    //MSH @Comment("상하행 교행")
+    @Comment("상하행 교행")
     private val crossRoad: Boolean?,
 
-    //MSH @Comment("스프링쿨러")
+    @Comment("스프링쿨러")
     private val springCooler: Boolean?,
 
-    //MSH @Comment("방화셔터")
+    @Comment("방화셔터")
     private val fireproofShutter: Boolean?,
 
     id: Long = 0L
